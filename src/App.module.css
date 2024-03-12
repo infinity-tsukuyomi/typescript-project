@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: aqua;
+}
+
+.outlet {
+    width: 95%;
+    margin: 0 auto;
+    height: calc(100vh - 90px);
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.header {
+    min-height: 70px;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.header a {
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+.header a[class = 'active'] {
+    text-decoration: underline;
+    color: deeppink;
+}
+
+.posters {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 550px 550px;
+    text-align: center;
+    row-gap: 50px;
+    margin-top: 30px;
+}
+
+.postersBackground img {
+    border-radius: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: "Impact";
+    color: rebeccapurple;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.description {
+    text-align: left;
+    font-size: 22px;
+    font-family: "Trebuchet MS";
+    font-weight: bolder;
+    color: navy;
+    margin-bottom: 15px;
+}
+
+.genre {
+    text-align: center;
+    font-size: 28px;
+    font-family: "Droid Sans";
+    font-weight: bold;
+    color: blueviolet;
+}
