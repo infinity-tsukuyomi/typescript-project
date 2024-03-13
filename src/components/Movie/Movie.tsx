@@ -5,13 +5,15 @@ import css from "../../App.module.css"
 import {Link} from "react-router-dom";
 
 const Movie: FC<{ movie: IMovie }> = ({movie}) => {
-    const {title, poster_path} = movie;
+    const {title, poster_path, id} = movie;
 
     return (
         <div>
             <div className={css.postersBackground}>
-                <Link to={title}>
-                    <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`}/>
+                <Link to={id.toString()}>
+                    {poster_path && (
+                        <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`}/>
+                    )}
                     <div className={css.title}>Name: {title}</div>
                 </Link>
             </div>

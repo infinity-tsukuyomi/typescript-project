@@ -5,7 +5,6 @@ import Movie from "../../components/Movie/Movie";
 import {getAllMovies, searchMovie} from "../../store/movie.slice";
 import css from "../../App.module.css"
 import {useSearchParams} from "react-router-dom";
-import movie from "../../components/Movie/Movie";
 
 const Movies: FC = () => {
     const {movies} = useAppSelector(state => state.movieReducer);
@@ -34,6 +33,9 @@ const Movies: FC = () => {
         e.preventDefault();
         const target = e.target as HTMLInputElement;
         setQuery({name: target.value})
+        let updatedSearchParams = new URLSearchParams(query.toString());
+        updatedSearchParams.set('name', `${target.value}`);
+        setQuery(updatedSearchParams.toString());
     }
 
     return (

@@ -2,10 +2,10 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 import {IMovie} from "../interfaces/movie.interface";
 import {pageService} from "../services/page.service";
-import movies from "../pages/Movies/Movies";
 
 interface IMovieState {
-    movies: IMovie[]
+    movies: IMovie[],
+    currentMovie: IMovie[]
 }
 
 export interface IResponseMovie {
@@ -21,7 +21,8 @@ interface ISearch {
 }
 
 const initialState: IMovieState = {
-    movies: []
+    movies: [],
+    currentMovie: []
 }
 
 export const getAllMovies = createAsyncThunk(
@@ -40,16 +41,21 @@ export const searchMovie = createAsyncThunk(
     }
 )
 
+export const movieById = createAsyncThunk(
+    'movieSlice/movieById',
+    async (id: number, {dispatch}) => {
+        const {data} = await pageService.getMovieById(id);
+        dispatch(setMovies({movies: data}))
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
     reducers: {
         setMovies: (state, action: PayloadAction<{ movies: IResponseMovie }>) => {
             state.movies = action.payload.movies.results
-        },
-        // findMovies: (state,  action: PayloadAction<{mov}>) => {
-        //
-        // }
+        }
     }
 });
 
