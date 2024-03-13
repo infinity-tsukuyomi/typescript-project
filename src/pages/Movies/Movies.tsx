@@ -18,7 +18,7 @@ const Movies: FC = () => {
         if (searchQuery === '') {
             dispatch(getAllMovies(pageQuery))
         } else {
-            dispatch(searchMovie({query: searchQuery,  page: pageQuery}))
+            dispatch(searchMovie({query: searchQuery, page: pageQuery}))
         }
     }, [searchQuery, pageQuery]);
 
@@ -30,7 +30,7 @@ const Movies: FC = () => {
         setQuery({...query, pageNumber: (pageQuery - 1).toString()})
     }
 
-    const submit = (e: React.FormEvent) => {
+    const inputChange = (e: React.FormEvent) => {
         e.preventDefault();
         const target = e.target as HTMLInputElement;
         setQuery({name: target.value})
@@ -38,10 +38,10 @@ const Movies: FC = () => {
 
     return (
         <div>
-            <form onSubmit={submit}>
-                <input type="search" name={'search'} placeholder={'Search here'}/>
+            <div>
+                <input onChange={inputChange} type="search" name={'search'} placeholder={'Search here'}/>
                 <button>Search</button>
-            </form>
+            </div>
             <button onClick={next}>Next</button>
             <button onClick={back}>Back</button>
             <div className={css.posters}>

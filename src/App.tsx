@@ -16,7 +16,7 @@ const App: FC = () => {
                     <Route index element={<Navigate to={'movies'}/>}/>
 
                     <Route path={'movies'} element={<Movies/>}>
-                        <Route path={':title'} element={<MovieDetails/>}/>
+                        <Route path={'movies/:id'} element={<MovieDetails/>}/>
                     </Route>
 
                     <Route path={'genres'} element={<Genres/>}/>
