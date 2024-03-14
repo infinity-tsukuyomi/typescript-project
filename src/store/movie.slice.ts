@@ -5,7 +5,7 @@ import {pageService} from "../services/page.service";
 
 interface IMovieState {
     movies: IMovie[],
-    currentMovie: IMovie[]
+    currentMovie: IMovie | null
 }
 
 export interface IResponseMovie {
@@ -22,7 +22,7 @@ interface ISearch {
 
 const initialState: IMovieState = {
     movies: [],
-    currentMovie: []
+    currentMovie: null
 }
 
 export const getAllMovies = createAsyncThunk(
@@ -45,7 +45,7 @@ export const movieById = createAsyncThunk(
     'movieSlice/movieById',
     async (id: number, {dispatch}) => {
         const {data} = await pageService.getMovieById(id);
-        dispatch(setMovies({movies: data}))
+        dispatch(takeMovie({currentMovie: data}))
     }
 )
 
@@ -55,6 +55,9 @@ const movieSlice = createSlice({
     reducers: {
         setMovies: (state, action: PayloadAction<{ movies: IResponseMovie }>) => {
             state.movies = action.payload.movies.results
+        },
+        takeMovie: (state, action: PayloadAction<{ currentMovie: IMovie }>) => {
+            state.currentMovie = action.payload.currentMovie
         }
     }
 });
@@ -62,4 +65,4 @@ const movieSlice = createSlice({
 const movieReducer = movieSlice.reducer;
 
 export default movieReducer;
-export const {setMovies} = movieSlice.actions;
+export const {setMovies, takeMovie} = movieSlice.actions;

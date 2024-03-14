@@ -35,19 +35,22 @@ const Movies: FC = () => {
         setQuery({name: target.value})
         let updatedSearchParams = new URLSearchParams(query.toString());
         updatedSearchParams.set('name', `${target.value}`);
+        updatedSearchParams.set('pageNumber', '1');
         setQuery(updatedSearchParams.toString());
     }
 
     return (
         <div>
-            <div>
-                <input onChange={inputChange} type="search" name={'search'} placeholder={'Search here'}/>
-                <button>Search</button>
+            <div className={css.searchDiv}>
+                <input onChange={inputChange} className={css.moviesInput} type="search" name={'search'} placeholder={'Search here'}/>
+                <button className={css.searchButton}>Search</button>
             </div>
-            <button onClick={next}>Next</button>
-            <button onClick={back}>Back</button>
             <div className={css.posters}>
                 {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}
+            </div>
+            <div className={css.paginationButtons}>
+                <button className={css.back} onClick={back}>Back</button>
+                <button className={css.next} onClick={next}>Next</button>
             </div>
         </div>
     );

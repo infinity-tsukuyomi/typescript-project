@@ -11,10 +11,12 @@ const Movie: FC<{ movie: IMovie }> = ({movie}) => {
         <div>
             <div className={css.postersBackground}>
                 <Link to={id.toString()}>
-                    {poster_path && (
+                    {poster_path ? (
                         <img src={`https://image.tmdb.org/t/p/w300/${poster_path}`}/>
-                    )}
-                    <div className={css.title}>Name: {title}</div>
+                    )
+                        : <img className={css.noImage} src={'https://nkz.a-si.ru/img/no-photo.jpg'}/>
+                    }
+                    <div className={css.title}>{title}</div>
                 </Link>
             </div>
         </div>
