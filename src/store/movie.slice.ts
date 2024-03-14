@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {Genre, IMovie} from "../interfaces/movie.interface";
+import {Genre, IGenreResponse, IMovie} from "../interfaces/movie.interface";
 import {pageService} from "../services/page.service";
 import {genreService} from "../services/genre.service";
 
@@ -52,13 +52,13 @@ export const movieById = createAsyncThunk(
     }
 )
 
-// export const getAllGenres = createAsyncThunk(
-//     'movieSlice/getAllGenres',
-//     async (_, {dispatch}) => {
-//         const {name} = await genreService.getAll();
-        // dispatch(setGenres({genres: name}))
-//     }
-// )
+export const getAllGenres = createAsyncThunk(
+    'movieSlice/getAllGenres',
+    async (_, {dispatch}) => {
+        const {data} = await genreService.getAll();
+        dispatch(setGenres({genres: data}))
+    }
+)
 
 const movieSlice = createSlice({
     name: 'movieSlice',
@@ -70,8 +70,8 @@ const movieSlice = createSlice({
         takeMovie: (state, action: PayloadAction<{ currentMovie: IMovie }>) => {
             state.currentMovie = action.payload.currentMovie
         },
-        setGenres: (state, action: PayloadAction<{ genres: Genre[] }>) => {
-            state.genres = action.payload.genres
+        setGenres: (state, action: PayloadAction<{ genres: IGenreResponse }>) => {
+            state.genres = action.payload.genres.genres
         }
     }
 });
