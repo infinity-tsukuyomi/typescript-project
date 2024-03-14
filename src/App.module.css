@@ -125,8 +125,73 @@ a {
 
 .movieDetail {
     color: white;
+    align-items: center;
 }
 
-.movieDetailImage {
+.movieDetailHeader {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Franklin Gothic Demi";
+    margin-top: 40px;
+}
 
+
+.movieDetailImage > img {
+    width: 350px;
+    border-radius: 10px;
+}
+
+.movieDetailVotes {
+    font-family: "Droid Sans";
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 100px;
+    margin-top: 40px;
+}
+
+.movieDetailVotes > img {
+    width: 40px;
+    height: 30px;
+}
+
+.movieDetailOverview {
+    font-family: "Droid Sans";
+    font-size: 24px;
+    margin-left: 100px;
+    margin-top: 30px;
+    width: 700px;
+}
+
+.movieDetailGenres {
+    font-family: "Droid Sans";
+    font-size: 24px;
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 30px;
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movieDetailGenre {
+    margin-left: 20px;
+    background-color: blueviolet;
+    border-radius: 5px;
+    font-size: 26px;
+    padding: 5px;
+}
+
+.movieDetailDate {
+    font-family: "Droid Sans";
+    font-size: 24px;
+    margin-left: 100px;
+    margin-top: 30px;
 }

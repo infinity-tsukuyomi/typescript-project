@@ -1,11 +1,13 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {IMovie} from "../interfaces/movie.interface";
+import {Genre, IMovie} from "../interfaces/movie.interface";
 import {pageService} from "../services/page.service";
+import {genreService} from "../services/genre.service";
 
 interface IMovieState {
     movies: IMovie[],
-    currentMovie: IMovie | null
+    currentMovie: IMovie | null,
+    genres: Genre[]
 }
 
 export interface IResponseMovie {
@@ -22,7 +24,8 @@ interface ISearch {
 
 const initialState: IMovieState = {
     movies: [],
-    currentMovie: null
+    currentMovie: null,
+    genres: []
 }
 
 export const getAllMovies = createAsyncThunk(
@@ -49,6 +52,14 @@ export const movieById = createAsyncThunk(
     }
 )
 
+// export const getAllGenres = createAsyncThunk(
+//     'movieSlice/getAllGenres',
+//     async (_, {dispatch}) => {
+//         const {name} = await genreService.getAll();
+        // dispatch(setGenres({genres: name}))
+//     }
+// )
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -58,6 +69,9 @@ const movieSlice = createSlice({
         },
         takeMovie: (state, action: PayloadAction<{ currentMovie: IMovie }>) => {
             state.currentMovie = action.payload.currentMovie
+        },
+        setGenres: (state, action: PayloadAction<{ genres: Genre[] }>) => {
+            state.genres = action.payload.genres
         }
     }
 });
@@ -65,4 +79,4 @@ const movieSlice = createSlice({
 const movieReducer = movieSlice.reducer;
 
 export default movieReducer;
-export const {setMovies, takeMovie} = movieSlice.actions;
+export const {setMovies, takeMovie, setGenres} = movieSlice.actions;
