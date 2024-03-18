@@ -3,11 +3,13 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Genre, IGenreResponse, IMovie} from "../interfaces/movie.interface";
 import {pageService} from "../services/page.service";
 import {genreService} from "../services/genre.service";
+import {IGenre, IGenreResult} from "../interfaces/genre.interface";
 
 interface IMovieState {
     movies: IMovie[],
     currentMovie: IMovie | null,
-    genres: Genre[]
+    genres: Genre[],
+    moviesWithGenres: IGenre[]
 }
 
 export interface IResponseMovie {
@@ -22,10 +24,16 @@ interface ISearch {
     page: number
 }
 
+interface IGenrePagination {
+    with_genres: number,
+    page: number
+}
+
 const initialState: IMovieState = {
     movies: [],
     currentMovie: null,
-    genres: []
+    genres: [],
+    moviesWithGenres: []
 }
 
 export const getAllMovies = createAsyncThunk(
@@ -60,6 +68,14 @@ export const getAllGenres = createAsyncThunk(
     }
 )
 
+export const getAllMoviesByGenre = createAsyncThunk(
+    'movieSlice/getAllMoviesByGenre',
+    async ({with_genres, page}: IGenrePagination, {dispatch}) => {
+        const {data} = await genreService.getPagesByGenre(with_genres, page);
+        dispatch(setMoviesWithGenres({moviesWithGenres: data}))
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -72,6 +88,9 @@ const movieSlice = createSlice({
         },
         setGenres: (state, action: PayloadAction<{ genres: IGenreResponse }>) => {
             state.genres = action.payload.genres.genres
+        },
+        setMoviesWithGenres: (state, action: PayloadAction<{ moviesWithGenres: IGenreResult }>) => {
+            state.moviesWithGenres = action.payload.moviesWithGenres.results
         }
     }
 });
@@ -79,4 +98,4 @@ const movieSlice = createSlice({
 const movieReducer = movieSlice.reducer;
 
 export default movieReducer;
-export const {setMovies, takeMovie, setGenres} = movieSlice.actions;
+export const {setMovies, takeMovie, setGenres, setMoviesWithGenres} = movieSlice.actions;

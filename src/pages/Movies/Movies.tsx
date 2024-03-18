@@ -21,6 +21,7 @@ const Movies: FC = () => {
         }
     }, [searchQuery, pageQuery]);
 
+
     const next = () => {
         setQuery({...query, pageNumber: (pageQuery + 1).toString()})
     }

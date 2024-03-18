@@ -5,6 +5,7 @@ import Layout from "./components/Layout/Layout";
 import Movies from "./pages/Movies/Movies";
 import Genres from "./pages/Genres/Genres";
 import MovieDetails from "./pages/MovieDetails/MovieDetails";
+import MoviesByGenre from "./components/MoviesByGenre/MoviesByGenre";
 
 const App: FC = () => {
 
@@ -20,6 +21,10 @@ const App: FC = () => {
                     <Route path={'movies/:id'} element={<MovieDetails/>}/>
 
                     <Route path={'genres'} element={<Genres/>}/>
+
+                    <Route path={'genres/:id'} element={<MoviesByGenre/>}/>
+
+                    <Route path={'genres/:id/:id'} element={<MovieDetails/>}/>
 
                 </Route>
             </Routes>
