@@ -237,6 +237,27 @@ a {
 
     .movieDetailHeader {
         flex-direction: column-reverse;
+        text-align: center;
+    }
 
+    .movieDetailVotes {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .movieDetailGenres {
+        width: 400px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .movieDetailOverview {
+        width: 400px;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .genresList {
+        font-size: 24px;
     }
 }
