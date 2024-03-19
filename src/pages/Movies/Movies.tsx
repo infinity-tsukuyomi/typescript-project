@@ -44,7 +44,6 @@ const Movies: FC = () => {
         <div>
             <div className={css.searchDiv}>
                 <input onChange={inputChange} className={css.moviesInput} type="search" name={'search'} placeholder={'Search here'}/>
-                <button className={css.searchButton}>Search</button>
             </div>
             <div className={css.posters}>
                 {movies.map(movie => <Movie key={movie.id} movie={movie}/>)}

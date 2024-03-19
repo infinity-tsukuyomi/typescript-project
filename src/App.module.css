@@ -97,6 +97,7 @@ a {
     height: 50px;
     background: #d3bba8;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .searchDiv {
@@ -106,21 +107,12 @@ a {
 
 .moviesInput {
     margin-top: 20px;
-    margin-right: 40px;
     padding-left: 20px;
     padding-right: 20px;
     font-size: 18px;
-    width: 25%;
+    width: 35%;
     height: 40px;
     border-radius: 20px;
-}
-
-.searchButton {
-    height: 40px;
-    width: 100px;
-    border-radius: 20px;
-    margin-top: 20px;
-    font-size: 18px;
 }
 
 .movieDetail {
@@ -177,7 +169,6 @@ a {
     margin-top: 30px;
     width: 700px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -208,4 +199,44 @@ a {
     color: snow;
     font-family: "Droid Sans";
     font-size: 24px;
+}
+
+@media screen and (max-width: 1024px) {
+    .movieDetailVotes {
+        margin-left: 20px;
+        font-size: 34px;
+    }
+
+    .movieDetailOverview,
+    .movieDetailGenres,
+    .movieDetailDate {
+        margin-left: 20px;
+        font-size: 32px;
+    }
+
+    .genresList {
+        font-size: 40px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .moviesInput {
+        width: 60%;
+    }
+
+    .posters {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .back,
+    .next {
+        width: 15%;
+    }
+
+    .movieDetailHeader {
+        flex-direction: column-reverse;
+
+    }
 }
